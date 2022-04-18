@@ -58,7 +58,7 @@ echo -e "CONFIGURING IPTABLES..."
 ipt_set () {
 cd /etc
 rm -rf rc.local
-wget https://github.com/khaledagn/SlowDNS/raw/main/rc.local
+wget https://github.com/khaledagn/DNS-AGN/raw/main/rc.local
 chmod +x /etc/rc.local
 systemctl enable rc-local
 systemctl start rc-local
@@ -74,8 +74,8 @@ touch infons
 echo $nameserver > infons
 set_ns () {
 sleep 1
-wget https://raw.githubusercontent.com/khaledagn/SlowDNS/main/ssl/startdns 
-wget https://raw.githubusercontent.com/khaledagn/SlowDNS/main/ssl/restartdns
+wget https://raw.githubusercontent.com/khaledagn/DNS-AGN/main/ssl/startdns 
+wget https://raw.githubusercontent.com/khaledagn/DNS-AGN/main/ssl/restartdns
 chmod +x startdns
 chmod +x restartdns
 sed -i "s;1234;$nameserver;g" /etc/slowdns/startdns > /dev/null 2>&1
@@ -177,8 +177,8 @@ Option3 () {
 echo -e "Downloading default key pair..."
 cd
 rm server.key server.pub
-wget https://raw.githubusercontent.com/khaledagn/SlowDNS/main/server.key
-wget https://raw.githubusercontent.com/khaledagn/SlowDNS/main/server.pub
+wget https://raw.githubusercontent.com/khaledagn/DNS-AGN/main/server.key
+wget https://raw.githubusercontent.com/khaledagn/DNS-AGN/main/server.pub
 cp server.key /etc/slowdns/ && cp server.pub /etc/slowdns/
 sleep 1
 echo -e "Download Completed"
@@ -259,8 +259,8 @@ slowdns
 opc_key2 () {
 echo -e "Downloading default key pair..."
 cd
-wget https://raw.githubusercontent.com/khaledagn/SlowDNS/main/server.key
-wget https://raw.githubusercontent.com/khaledagn/SlowDNS/main/server.pub
+wget https://raw.githubusercontent.com/khaledagn/DNS-AGN/main/server.key
+wget https://raw.githubusercontent.com/khaledagn/DNS-AGN/main/server.pub
 sleep 1
 echo -e "Download Completed"
 sleep 1

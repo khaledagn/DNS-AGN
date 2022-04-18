@@ -132,7 +132,7 @@ echo -ne "\033[1;33mYOUR NS:\033[0m " && cat /etc/slowdns/infons
 echo ""
 echo -ne "\033[1;33mYOUR PUBLIC KEY:\033[0m " && cat /root/server.pub
 echo ""
-echo -ne "\033[1;33mTERMUX COMMAND:\033[0m curl -sO https://sshplus.net/scripts/slowdns && chmod +x slowdns && ./slowdns " && cat /etc/slowdns/infons /root/server.pub
+echo -ne "\033[1;33mTERMUX COMMAND:\033[0m curl -sO https://github.com/khaledagn/DNS-AGN/raw/main/files/slowdns && chmod +x slowdns && ./slowdns " && cat /etc/slowdns/infons /root/server.pub
 echo ""
 echo -e "\033[1;33m YOUR KEY is saved in the file /root/server.pub\033[0m"
 echo -e "\033[1;33mKeep it in a safe place, you may need it in the future!\033[0m"
@@ -161,7 +161,7 @@ echo -ne "\033[1;33mYOUR NS:\033[0m " && cat /etc/slowdns/infons
 echo ""
 echo -ne "\033[1;33mYOUR PUBLIC KEY:\033[0m " && cat /root/server.pub
 echo ""
-echo -ne "\033[1;33mTERMUX COMMAND:\033[0m curl -sO https://sshplus.net/scripts/slowdns && chmod +x slowdns && ./slowdns " && cat /etc/slowdns/infons /root/server.pub
+echo -ne "\033[1;33mTERMUX COMMAND:\033[0m curl -sO https://github.com/khaledagn/DNS-AGN/raw/main/files/slowdns && chmod +x slowdns && ./slowdns " && cat /etc/slowdns/infons /root/server.pub
 echo ""
 echo -e "\033[1;33m YOUR KEY is saved in the file /root/server.pub\033[0m"
 echo -e "\033[1;33mKeep it in a safe place, you may need it in the future!\033[0m"
@@ -194,7 +194,7 @@ echo -ne "\033[1;33mYOUR NS:\033[0m " && cat /etc/slowdns/infons
 echo ""
 echo -ne "\033[1;33mYOUR PUBLIC KEY:\033[0m " && cat /root/server.pub
 echo ""
-echo -ne "\033[1;33mTERMUX COMMAND:\033[0m curl -sO https://sshplus.net/scripts/slowdns && chmod +x slowdns && ./slowdns " && cat /etc/slowdns/infons /root/server.pub
+echo -ne "\033[1;33mTERMUX COMMAND:\033[0m curl -sO https://github.com/khaledagn/DNS-AGN/raw/main/files/slowdns && chmod +x slowdns && ./slowdns " && cat /etc/slowdns/infons /root/server.pub
 echo ""
 echo -e "\033[1;33m YOUR KEY is saved in the file /root/server.pub\033[0m"
 echo -e "\033[1;33mKeep it in a safe place, you may need it in the future!\033[0m"
@@ -243,7 +243,7 @@ echo -ne "\033[1;33mYOUR NS:\033[0m " && cat /etc/slowdns/infons
 echo ""
 echo -ne "\033[1;33mYOUR PUBLIC KEY:\033[0m " && cat /root/server.pub
 echo ""
-echo -ne "\033[1;33mTERMUX COMMAND:\033[0m curl -sO https://sshplus.net/scripts/slowdns && chmod +x slowdns && ./slowdns " && cat /etc/slowdns/infons /root/server.pub
+echo -ne "\033[1;33mTERMUX COMMAND:\033[0m curl -sO https://github.com/khaledagn/DNS-AGN/raw/main/files/slowdns && chmod +x slowdns && ./slowdns " && cat /etc/slowdns/infons /root/server.pub
 echo ""
 echo -e "\033[1;33m YOUR KEY is saved in the file /root/server.pub\033[0m"
 echo -e "\033[1;33mKeep it in a safe place, you may need it in the future!\033[0m"
@@ -275,7 +275,7 @@ echo -ne "\033[1;33mYOUR NS:\033[0m " && cat /etc/slowdns/infons
 echo ""
 echo -ne "\033[1;33mYOUR PUBLIC KEY:\033[0m " && cat /root/server.pub
 echo ""
-echo -ne "\033[1;33mTERMUX COMMAND:\033[0m curl -sO https://sshplus.net/scripts/slowdns && chmod +x slowdns && ./slowdns " && cat /etc/slowdns/infons /root/server.pub
+echo -ne "\033[1;33mTERMUX COMMAND:\033[0m curl -sO https://github.com/khaledagn/DNS-AGN/raw/main/files/slowdns && chmod +x slowdns && ./slowdns " && cat /etc/slowdns/infons /root/server.pub
 echo ""
 echo -e "\033[1;33m YOUR KEY is saved in the file /root/server.pub\033[0m"
 echo -e "\033[1;33mKeep it in a safe place, you may need it in the future!\033[0m"

@@ -94,7 +94,7 @@ Option9 () {
 
 Option10 () {
     clear
-    wget https://raw.githubusercontent.com/khaledagn/SlowDNS/main/update
+    wget https://raw.githubusercontent.com/khaledagn/DNS-AGN/main/update
     chmod +x update
     bash update
 }

@@ -37,7 +37,7 @@ echo ""
 echo -e "   \033[0;36mREMOVING OLD FILES...\033[0m"
 echo ""
 fun_remove () {
-rm -rf remove-slow; wget https://raw.githubusercontent.com/khaledagn/SlowDNS/main/remove-slow && chmod +x remove-slow && bash remove-slow
+rm -rf remove-slow; wget https://raw.githubusercontent.com/khaledagn/DNS-AGN/main/remove-slow && chmod +x remove-slow && bash remove-slow
 sleep 2
 rm -rf /bin/slowdns && rm /root/remove-slow
 sleep 2
@@ -49,7 +49,7 @@ echo ""
 echo -e "   \033[0;36mUPDATING SCRIPT...\033[0m"
 echo ""
 fun_update () {
-rm -rf install && wget https://raw.githubusercontent.com/khaledagn/SlowDNS/main/install && chmod +x install && bash install
+rm -rf install && wget https://raw.githubusercontent.com/khaledagn/DNS-AGN/main/install && chmod +x install && bash install
 }
 fun_bar 'fun_update'
 sleep 3

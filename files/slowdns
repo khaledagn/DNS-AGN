@@ -28,7 +28,7 @@ echo -e "${RED}$banner${SCOLOR}"
     chmod +x $PREFIX/bin/slowdns
     [[ $(grep -c 'slowdns' $PREFIX/etc/profile) == '0' ]] && echo 'slowdns' >> $PREFIX/etc/profile
     echo -e "\n${GREEN}DOWNLOADING THE SCRIPT PLEASE WAIT ! ${SCOLOR}"
-    curl -O https://github.com.com/khaledagn/DNS-AGN/raw/main/files/dns > /dev/null 2>&1
+    curl -O https://raw.githubusercontent.com/khaledagn/DNS-AGN/main/files/dns > /dev/null 2>&1
     echo -e "\n${RED}[${YELLOW}!${RED}] ${YELLOW}SCRIPT DOWNLOADED! THE NEXT TIME\nJUST RUN THE COMMAND ${RED}(${GREEN}slowdns${RED})\n${YELLOW}EVEN IF YOU ARE OFFLINE !${SCOLOR}"
     chmod +x dns
 }

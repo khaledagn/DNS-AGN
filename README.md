@@ -2,7 +2,7 @@
 ```
 * DNS-AGN SLOWDNS SCRIPT
 ```
-![logo](https://raw.githubusercontent.com/khaledagn/VPS-AGN_English_Official/main/VPS-AGN.png)
+![logo](https://raw.githubusercontent.com/khaledagn/DNS-AGN/main/DNS-AGN.png)
 
 ```
 THIS IS A SCRIPT FOR AUTO INSTALLATION OF SLOWDNS (DNSTT SERVER) WITH:

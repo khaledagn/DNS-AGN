@@ -57,7 +57,7 @@ echo -e "DOWNLOADING BINARY DNSTT..."
 download_dnstt () {
 rm -rf /etc/slowdns
 mkdir /etc/slowdns
-cd /etc/slowdns/ && wget https://github.com/khaledagn/SlowDNS/raw/main/dns-server
+cd /etc/slowdns/ && wget https://github.com/khaledagn/DNS-AGN/raw/main/dns-server
 chmod +x dns-server
 }
 fun_bar 'download_dnstt'
@@ -65,7 +65,7 @@ echo -e "CONFIGURING IPTABLES..."
 ipt_set () {
 cd /etc
 rm -rf rc.local
-wget https://github.com/khaledagn/SlowDNS/raw/main/rc.local
+wget https://github.com/khaledagn/DNS-AGN/raw/main/rc.local
 chmod +x /etc/rc.local
 systemctl enable rc-local
 systemctl start rc-local
@@ -81,9 +81,9 @@ touch infons
 echo $nameserver > infons
 set_ns () {
 sleep 1
-wget https://raw.githubusercontent.com/khaledagn/SlowDNS/main/drop/startdns 
-wget https://raw.githubusercontent.com/khaledagn/SlowDNS/main/drop/restartdns 
-wget https://raw.githubusercontent.com/khaledagn/SlowDNS/main/slowdns-info
+wget https://raw.githubusercontent.com/khaledagn/DNS-AGN/main/drop/startdns 
+wget https://raw.githubusercontent.com/khaledagn/DNS-AGN/main/drop/restartdns 
+wget https://raw.githubusercontent.com/khaledagn/DNS-AGN/main/slowdns-info
 chmod +x startdns
 chmod +x restartdns
 sed -i "s;1234;$nameserver;g" /etc/slowdns/startdns > /dev/null 2>&1
@@ -182,8 +182,8 @@ Option3 () {
 echo -e "Downloading default key pair..."
 cd
 rm server.key server.pub
-wget https://raw.githubusercontent.com/khaledagn/SlowDNS/main/server.key
-wget https://raw.githubusercontent.com/khaledagn/SlowDNS/main/server.pub
+wget https://raw.githubusercontent.com/khaledagn/DNS-AGN/main/server.key
+wget https://raw.githubusercontent.com/khaledagn/DNS-AGN/main/server.pub
 sleep 1
 echo -e "Download Completed"
 sleep 1
@@ -263,8 +263,8 @@ slowdns
 opc_key2 () {
 echo -e "Downloading default key pair..."
 cd
-wget https://raw.githubusercontent.com/khaledagn/SlowDNS/main/server.key
-wget https://raw.githubusercontent.com/khaledagn/SlowDNS/main/server.pub
+wget https://raw.githubusercontent.com/khaledagn/DNS-AGN/main/server.key
+wget https://raw.githubusercontent.com/khaledagn/DNS-AGN/main/server.pub
 sleep 1
 echo -e "Download Completed"
 sleep 1

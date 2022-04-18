@@ -5,8 +5,7 @@
 ![logo](https://raw.githubusercontent.com/khaledagn/VPS-AGN_English_Official/main/VPS-AGN.png)
 
 ```
-
-THIS IS A SCRIPT FOR AUTO INSTALLING OF DNSTT SERVER WITH:
+THIS IS A SCRIPT FOR AUTO INSTALLATION OF SLOWDNS (DNSTT SERVER) WITH:
 
 -SSH
 -SSL

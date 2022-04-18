@@ -1,0 +1,63 @@
+#!/bin/bash
+fun_bar () {
+comando[0]="$1"
+comando[1]="$2"
+ (
+[[ -e $HOME/fim ]] && rm $HOME/fim
+${comando[0]} -y > /dev/null 2>&1
+${comando[1]} -y > /dev/null 2>&1
+touch $HOME/fim
+ ) > /dev/null 2>&1 &
+ tput civis
+echo -ne "  \033[1;33mWAIT \033[1;37m- \033[1;33m["
+while true; do
+   for((i=0; i<18; i++)); do
+   echo -ne "\033[1;31m#"
+   sleep 0.1s
+   done
+   [[ -e $HOME/fim ]] && rm $HOME/fim && break
+   echo -e "\033[1;33m]"
+   sleep 1s
+   tput cuu1
+   tput dl1
+   echo -ne "  \033[1;33mWAIT \033[1;37m- \033[1;33m["
+done
+echo -e "\033[1;33m]\033[1;37m -\033[1;32m OK !\033[1;37m"
+tput cnorm
+}
+clear
+echo -e "\033[1;33mATTENTION HERE PLEASE!\033[0m"
+echo ""
+echo -e "At the end of the process, you will need to configure"
+echo -e "the SlowDNS service again, choose the option"
+echo -e "Use current key to restore your old key"
+echo ""
+read -p "Press [ENTER] to continue or CTRL + C to cancel"
+echo ""
+echo -e "   \033[0;36mREMOVING OLD FILES...\033[0m"
+echo ""
+fun_remove () {
+rm -rf remove-slow; wget https://raw.githubusercontent.com/khaledagn/SlowDNS/main/remove-slow && chmod +x remove-slow && bash remove-slow
+sleep 2
+rm -rf /bin/slowdns && rm /root/remove-slow
+sleep 2
+rm remove-slow && rm -rf /etc/slowdns
+}
+fun_bar 'fun_remove'
+rm -rf /etc/slowdns
+echo ""
+echo -e "   \033[0;36mUPDATING SCRIPT...\033[0m"
+echo ""
+fun_update () {
+rm -rf install && wget https://raw.githubusercontent.com/khaledagn/SlowDNS/main/install && chmod +x install && bash install
+}
+fun_bar 'fun_update'
+sleep 3
+echo ""
+echo -e "\033[0;36mSLOWDNS SUCCESSFULLY UPDATED! [✔]\033[0m"
+echo ""
+sleep 3
+echo -e "  \033[1;33mTO OPEN THE USE MENU: \033[1;37m\033sslowdns\033[1;33m"
+echo ""
+read -p "Press [ ENTER ] to release the terminal"
+echo -e "\033[0m"

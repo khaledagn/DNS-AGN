@@ -1,0 +1,14 @@
+#!/bin/bash
+echo -e "\033[1;36m THIS IS YOUR INFORMATION!\033[0m"
+echo ""
+echo -ne "YOUR NS (Nameserver): " && cat /etc/slowdns/infons
+echo ""
+echo -ne "YOUR PUBLIC KEY: " && cat /root/server.pub
+echo ""
+echo -ne "\033[1;33mTERMUX COMMAND:\033[0m curl -sO https://sshplus.net/scripts/slowdns && chmod +x slowdns && ./slowdns " && cat /etc/slowdns/infons /root/server.pub
+echo ""
+echo -e "\033[1;33m YOUR KEY is saved in the /root/server.pub file\033[0m"
+echo -e "\033[1;33mKeep it in a safe place, you may need it in the future!\033[0m"
+echo ""
+read -p "Press [Enter] to return to the menu or CTRL+C to exit"
+slowdns

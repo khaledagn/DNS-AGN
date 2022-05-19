@@ -114,7 +114,7 @@ x) OptionX ;;
 *) "Unknown command" ; echo ; key;;
 esac
 }
-Opcao1 () {
+Option1 () {
 echo -ne "Restoring existing key..." && sleep 2 && echo "OK!"
 echo ""
 echo -e "FINISHING..."
@@ -140,7 +140,7 @@ echo ""
 read -p "Press [Enter] to return to the menu or CTRL+C to exit"
 slowdns
 }
-Opcao2 () {
+Option2 () {
 cd
 rm server.key server.pub
 echo "Generating new key"
@@ -169,7 +169,7 @@ echo ""
 read -p "Press [Enter] to return to the menu or CTRL+C to exit"
 slowdns
 }
-Opcao3 () {
+Option3 () {
 echo -e "Downloading default key pair..."
 cd
 rm server.key server.pub
@@ -202,7 +202,7 @@ echo ""
 read -p "Press [Enter] to return to the menu or CTRL+C to exit"
 slowdns
 }
-OpcaoX () {
+OptionX () {
 exit
 }
 key

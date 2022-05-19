@@ -71,7 +71,7 @@ Option5 () {
     bash /etc/slowdns/slowdns-info
 }
 
-Opcao6 () {
+Option6 () {
     clear
     bash /etc/slowdns/startdns
 }
@@ -81,7 +81,7 @@ Option7 () {
     bash /etc/slowdns/restartdns
 }
 
-Opcao8 () {
+Option8 () {
     clear
     bash /etc/slowdns/stopdns
 }

@@ -32,7 +32,7 @@ install_hysteria(){
 clear
 echo 'Installing hysteria.'
 {
-wget -N --no-check-certificate -q -O ~/install_server.sh https://raw.githubusercontent.com/apernet/hysteria/master/install_server.sh; chmod +x ~/install_server.sh; ./install_server.sh
+wget https://raw.githubusercontent.com/apernet/hysteria/master/install_server.sh; chmod +x install_server.sh; ./install_server.sh
 } 
 }
 

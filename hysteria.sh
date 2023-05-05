@@ -84,7 +84,7 @@ domain=$(cat /root/domain)
 curl  https://get.acme.sh | sh
 ~/.acme.sh/acme.sh --register-account -m ${SSL_ID} --server zerossl
 ~/.acme.sh/acme.sh --issue -d "DOMAIN" --standalone -k ec-256
-~/.acme.sh/acme.sh --installcert -d "${domain}" --fullchainpath /etc/hysteria/hysteria.crt --keypath /etc/hysteria/hysteria.key --ecc
+~/.acme.sh/acme.sh --installcert -d "DOMAIN" --fullchainpath /etc/hysteria/hysteria.crt --keypath /etc/hysteria/hysteria.key --ecc
 }
 }
 

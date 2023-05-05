@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #Do not forget to set this variables
-DOMAIN=api-udpserv.khaledagn.com
+DOMAIN=udpserv.khaledagn.com
 CF_ID=agnkhaled11@gmail.com
 CF_KEY=54578812da59c595d6e83fa90022544888fae
 CF_ZONE=695a6007808a2b1a03e505235e5f4dd9

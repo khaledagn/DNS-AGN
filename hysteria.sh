@@ -1,10 +1,11 @@
 #!/bin/sh
 
 #Do not forget to set this variables
-DOMAIN=api-mediateksts.online
-CF_ID=eskalartedexter62@gmail.com
-CF_KEY=63095e8ea8a6446c6eb2a08d8865ec52bfefe
-CF_ZONE=dfe3a4dae35c31ef92041c80010e1ba0
+DOMAIN=api-udpserv.khaledagn.com
+CF_ID=agnkhaled11@gmail.com
+CF_KEY=54578812da59c595d6e83fa90022544888fae
+CF_ZONE=695a6007808a2b1a03e505235e5f4dd9
+SSL_ID=killthebeat11@gmail.com
 MYIP=$(wget -qO- icanhazip.com);
 server_ip=$(curl -s https://api.ipify.org)
 
@@ -59,10 +60,10 @@ echo '{
   "up_mbps": 100,
   "down_mbps": 100,
   "disable_udp": false,
-  "obfs": "dhoom",
+  "obfs": "agnudp",
   "auth": {
     "mode": "passwords",
-    "config": ["dhoom", "stronghold3"]
+    "config": ["agnudp", "agnudps"]
   }
 }
 ' >> /etc/hysteria/config.json
@@ -81,7 +82,7 @@ echo "Installing letsencrypt."
 apt remove apache2 -y
 domain=$(cat /root/domain)
 curl  https://get.acme.sh | sh
-~/.acme.sh/acme.sh --register-account -m ${CF_ID} --server zerossl
+~/.acme.sh/acme.sh --register-account -m ${SSL_ID} --server zerossl
 ~/.acme.sh/acme.sh --issue -d "${domain}" --standalone -k ec-256
 ~/.acme.sh/acme.sh --installcert -d "${domain}" --fullchainpath /etc/hysteria/hysteria.crt --keypath /etc/hysteria/hysteria.key --ecc
 }
@@ -103,8 +104,9 @@ clear
 echo "Installing iptables."
 sysctl -p
 {
-iptables -t nat -A PREROUTING -i eth0 -p udp --dport 20000:50000 -j DNAT --to-destination :1080 
-ip6tables -t nat -A PREROUTING -i eth0 -p udp --dport 20000:50000 -j DNAT --to-destination :1080 
+
+iptables -t nat -A PREROUTING -i $(ip -4 route ls|grep default|grep -Po '(?<=dev )(\S+)'|head -1) -p udp --dport 20000:50000 -j DNAT --to-destination :1080
+ip6tables -t nat -A PREROUTING -i $(ip -4 route ls|grep default|grep -Po '(?<=dev )(\S+)'|head -1) -p udp --dport 20000:50000 -j DNAT --to-destination :1080
 
 sysctl net.ipv4.conf.all.rp_filter=0 
 sysctl net.ipv4.conf.eth0.rp_filter=0 

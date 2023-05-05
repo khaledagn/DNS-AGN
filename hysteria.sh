@@ -32,7 +32,10 @@ create_hostname() {
 clear
 echo 'Creating hostname.'
 {
-echo "DOMAIN" > /root/domain
+sub=$(</dev/urandom tr -dc a-z0-9 | head -c4)
+SUB_DOMAIN=${sub}.${DOMAIN}
+curl -X POST "https://api.cloudflare.com/client/v4/zones/${CF_ZONE}/dns_records" -H "X-Auth-Email: ${CF_ID}" -H "X-Auth-Key: ${CF_KEY}" -H "Content-Type: application/json" --data '{"type":"A","name":"'"${SUB_DOMAIN}"'","content":"'"${MYIP}"'","ttl":1,"priority":0,"proxied":false}' &>/dev/null
+echo "$SUB_DOMAIN" > /root/domain
 }
 }
 
@@ -79,9 +82,9 @@ echo "Installing letsencrypt."
 apt remove apache2 -y
 domain=$(cat /root/domain)
 curl  https://get.acme.sh | sh
-~/.acme.sh/acme.sh --register-account -m ${SSL_ID} --server zerossl
-~/.acme.sh/acme.sh --issue -d "DOMAIN" --standalone -k ec-256
-~/.acme.sh/acme.sh --installcert -d "DOMAIN" --fullchainpath /etc/hysteria/hysteria.crt --keypath /etc/hysteria/hysteria.key --ecc
+~/.acme.sh/acme.sh --register-account -m "${SSL_ID}" --server zerossl
+~/.acme.sh/acme.sh --issue -d "${domain}" --standalone -k ec-256
+~/.acme.sh/acme.sh --installcert -d "${domain}" --fullchainpath /etc/hysteria/hysteria.crt --keypath /etc/hysteria/hysteria.key --ecc
 }
 }
 

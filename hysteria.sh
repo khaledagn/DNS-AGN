@@ -28,14 +28,6 @@ clear
 clear
 }
 
-create_hostname() {
-clear
-echo 'Creating hostname.'
-{
-echo ${DOMAIN} > /root/domain
-}
-}
-
 install_hysteria(){
 clear
 echo 'Installing hysteria.'
@@ -77,11 +69,14 @@ clear
 echo "Installing letsencrypt."
 {
 apt remove apache2 -y
+echo "$DOMAIN" > /root/domain
 domain=$(cat /root/domain)
 curl  https://get.acme.sh | sh
-~/.acme.sh/acme.sh --register-account -m "${SSL_ID}" --server zerossl
+~/.acme.sh/acme.sh --register-account -m firenetdev@gmail.com --server zerossl
 ~/.acme.sh/acme.sh --issue -d "${domain}" --standalone -k ec-256
 ~/.acme.sh/acme.sh --installcert -d "${domain}" --fullchainpath /etc/hysteria/hysteria.crt --keypath /etc/hysteria/hysteria.key --ecc
+chmod 755 /etc/hysteria/hysteria.crt
+chmod 755 755 /etc/hysteria/hysteria.key
 }
 }
 
@@ -169,7 +164,6 @@ reboot
 }
 
 install_require 
-create_hostname
 install_hysteria
 install_letsencrypt
 install_firewall_kvm

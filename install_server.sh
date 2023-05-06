@@ -673,11 +673,18 @@ tpl_etc_hysteria_config_json() {
   "listen": ":36712",
   "acme": {
     "domains": [
-      "your.domain.com"
+      "vpn.khaledagn.com"
     ],
-    "email": "your@email.com"
+    "email": "agnkhaled11@email.com"
   },
-  "obfs": "8ZuA2Zpqhuk8yakXvMjDqEXBwY"
+  "obfs": "agnudp",
+  "up_mbps": 100,
+	"down_mbps": 100,
+	"disable_udp": false,
+  "auth": {
+				"mode": "passwords",
+				"config": ["agnudp", "agnudps"]
+			}
 }
 EOF
 }

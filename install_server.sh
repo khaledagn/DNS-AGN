@@ -671,20 +671,27 @@ tpl_etc_hysteria_config_json() {
   cat << EOF
 {
   "listen": ":36712",
+  "protocol": "udp",
   "acme": {
-    "domains": [
-      "vpn.khaledagn.com"
-    ],
-    "email": "agnkhaled11@email.com"
-  },
+	"domains": [
+	"vpn.khaledagn.com"
+	], // Domains for the ACME cert
+	"email": "agnkhaled11@email.com", // Registration email, optional but recommended
+	"disable_http": false, // Disable HTTP challenges
+	"disable_tlsalpn": false, // Disable TLS-ALPN challenges
+	"alt_http_port": 8089, // Alternate port for HTTP challenges
+	"alt_tlsalpn_port": 4433 // Alternate port for TLS-ALPN challenges
+},
+  "up": "100 Mbps", // Max upload speed per client, mutually exclusive with "up_mbps" below
+  "up_mbps": 100, // Max upload Mbps per client
+  "down": "100 Mbps", // Max download speed per client, mutually exclusive with "down_mbps" below
+  "down_mbps": 100, // Max download Mbps per client
+  "disable_udp": false, // Disable UDP support
   "obfs": "agnudp",
-  "up_mbps": 100,
-	"down_mbps": 100,
-	"disable_udp": false,
   "auth": {
-				"mode": "passwords",
-				"config": ["agnudp", "agnudps"]
-			}
+	"mode": "passwords",
+	"config": ["agnudp", "agnudps"]
+         }
 }
 EOF
 }

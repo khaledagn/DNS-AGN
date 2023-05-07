@@ -694,7 +694,7 @@ tpl_etc_hysteria_config_json() {
   "obfs": "$OBFS",
   "auth": {
 	"mode": "passwords",
-	"config": [$PASSWORD]
+	"config": $PASSWORD
          }
 }
 EOF
@@ -939,23 +939,26 @@ perform_install() {
 						if [[ -n "$_is_frash_install" ]]; then
 							echo
 							echo -e "$(tbold)Congratulation! AGN-UDP has been successfully installed on your server.$(treset)"
+							echo
 							echo -e "$(tbold)Client app AGN INJECTOR:$(treset)"
 							echo -e "\t+$(tblue)https://play.google.com/store/apps/details?id=com.agn.injector$(treset)"
 							echo
 							echo -e "What's next?"
 							echo
-							echo -e "\t+ Check out my website at $(tblue)https://www.khaledagn.com$(treset)"
-							echo -e "\t+ Follow me on Telegram: $(tblue)https://t.me/khaledagn(treset)"
-							echo -e "\t+ Follow me on Facebook: $(tblue)https://facebook.com/itskhaledagn(treset)"
 							echo -e "\t+ Edit server config file at $(tred)$CONFIG_DIR/config.json$(treset)"
 							echo -e "\t+ Start your AGN-UDP server with $(tred)systemctl start hysteria-server.service$(treset)"
 							echo -e "\t+ Configure AGN-UDP start on system boot with $(tred)systemctl enable hysteria-server.service$(treset)"
+						        echo -e "Follow me!"
+							echo
+							echo -e "\t+ Check out my website at $(tblue)https://www.khaledagn.com$(treset)"
+							echo -e "\t+ Follow me on Telegram: $(tblue)https://t.me/khaledagn(treset)"
+							echo -e "\t+ Follow me on Facebook: $(tblue)https://facebook.com/itskhaledagn(treset)"
 							echo
 							else
 								restart_running_services
 								
 								echo
-								echo -e "$(tbold)Hysteria has been successfully update to $VERSION.$(treset)"
+								echo -e "$(tbold)AGN-UDP has been successfully update to $VERSION.$(treset)"
 								echo
 								echo -e "Check out the latest changelog $(tblue)https://github.com/apernet/hysteria/blob/master/CHANGELOG.md$(treset)"
 								echo

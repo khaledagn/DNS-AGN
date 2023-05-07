@@ -649,19 +649,15 @@ tpl_hysteria_server_service_base() {
 
   cat << EOF
 [Unit]
-Description=Hysteria Server Service config.json
+Description=AGN-UDP Service
 After=network.target
 
 [Service]
-Type=simple
-ExecStart=/usr/local/bin/hysteria -config /etc/hysteria/config.json server
+User=root
+Group=root
 WorkingDirectory=/etc/hysteria
-User=$HYSTERIA_USER
-Group=$HYSTERIA_USER
-Environment=HYSTERIA_LOG_LEVEL=info
-CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_NET_RAW
-AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_NET_RAW
-NoNewPrivileges=true
+Environment="PATH=/usr/local/bin/hysteria"
+ExecStart=/usr/local/bin/hysteria -config /etc/hysteria/config.json server
 
 [Install]
 WantedBy=multi-user.target

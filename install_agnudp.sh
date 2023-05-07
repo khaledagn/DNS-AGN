@@ -25,7 +25,7 @@ UDP_PORT=":36712"
 OBFS="agnudp"
 
 # PASSWORDS
-PASSWORD="["agnudp", "agnudps"]"
+PASSWORD=""agnudp", "agnudps""
 
 # Basename of this script
 SCRIPT_NAME="$(basename "$0")"
@@ -694,7 +694,7 @@ tpl_etc_hysteria_config_json() {
   "obfs": "$OBFS",
   "auth": {
 	"mode": "passwords",
-	"config": $PASSWORD
+	"config": [$PASSWORD]
          }
 }
 EOF
@@ -1037,8 +1037,8 @@ main() {
 	
 	case "$OPERATION" in
 	"install")
-	setup_ssl
 	perform_install
+	setup_ssl
 	;;
 	"remove")
 	perform_remove

@@ -176,7 +176,6 @@ has_prefix() {
 
 systemctl() {
 	if [[ "x$FORCE_NO_SYSTEMD" == "x2" ]] || ! has_command systemctl; then
-		warning "Ignored systemd command: systemctl $@"
 		return
 		fi
 		

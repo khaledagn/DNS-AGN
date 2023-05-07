@@ -1027,11 +1027,11 @@ start_services() {
 
 main() {
 	parse_arguments "$@"
+	install_dependencies
 	check_permission
 	check_environment
 	check_hysteria_user "hysteria"
 	check_hysteria_homedir "/var/lib/$HYSTERIA_USER"
-	install_dependencies
 	case "$OPERATION" in
 	"install")
 	perform_install

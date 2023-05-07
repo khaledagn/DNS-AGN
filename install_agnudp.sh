@@ -25,7 +25,7 @@ UDP_PORT=":36712"
 OBFS="agnudp"
 
 # PASSWORDS
-PASSWORD=""agnudp"", ""agnudps""
+PASSWORD="agnudp"
 
 # Basename of this script
 SCRIPT_NAME="$(basename "$0")"

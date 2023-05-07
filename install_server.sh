@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 #
-# install_server.sh - hysteria server install script
-# Try `install_server.sh --help` for usage.
+# Try `install_agnudp.sh --help` for usage.
 #
-# SPDX-License-Identifier: MIT
-# Copyright (c) 2022 Aperture Internet Laboratory
+# (c) 2023 Khaled AGN
 #
 
 set -e
@@ -939,6 +937,8 @@ perform_install() {
 						if [[ -n "$_is_frash_install" ]]; then
 							echo
 							echo -e "$(tbold)Congratulation! AGN-UDP has been successfully installed on your server.$(treset)"
+							echo -e "$(tbold)Client app AGN INJECTOR:$(treset)"
+							echo -e "\t+$(tblue)https://play.google.com/store/apps/details?id=com.agn.injector$(treset)"
 							echo
 							echo -e "What's next?"
 							echo
@@ -1009,6 +1009,7 @@ install_dependencies() {
 
 setup_ssl() {
 	echo "Installing ssl"
+	
 	openssl genrsa -out /etc/hysteria/hysteria.ca.key 2048
 	
 	openssl req -new -x509 -days 3650 -key /etc/hysteria/hysteria.ca.key -subj "/C=CN/ST=GD/L=SZ/O=Hysteria, Inc./CN=Hysteria Root CA" -out /etc/hysteria/hysteria.ca.crt

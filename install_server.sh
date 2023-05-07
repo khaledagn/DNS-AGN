@@ -17,9 +17,6 @@ set -e
 # Domain Name
 DOMAIN="vpn.khaledagn.com"
 
-# Email
-EMAIL="agnkhaledagn11@gmail.com"
-
 # PROTOCOL
 PROTOCOL="udp"
 
@@ -29,7 +26,7 @@ UDP_PORT=":36712"
 # OBFS
 OBFS="agnudp"
 
-# PASSWORD
+# PASSWORDS
 PASSWORD="agnudp","agnudps"
 
 # Basename of this script
@@ -553,18 +550,18 @@ check_hysteria_homedir() {
 
 show_usage_and_exit() {
 	echo
-	echo -e "\t$(tbold)$SCRIPT_NAME$(treset) - hysteria server install script"
+	echo -e "\t$(tbold)$SCRIPT_NAME$(treset) - AGN-UDP server install script"
 	echo
 	echo -e "Usage:"
 	echo
-	echo -e "$(tbold)Install hysteria$(treset)"
+	echo -e "$(tbold)Install AGN-UDP$(treset)"
 	echo -e "\t$0 [ -f | -l <file> | --version <version> ]"
 	echo -e "Flags:"
 	echo -e "\t-f, --force\tForce re-install latest or specified version even if it has been installed."
-	echo -e "\t-l, --local <file>\tInstall specified hysteria binary instead of download it."
+	echo -e "\t-l, --local <file>\tInstall specified AGN-UDP binary instead of download it."
 	echo -e "\t--version <version>\tInstall specified version instead of the latest."
 	echo
-	echo -e "$(tbold)Remove hysteria$(treset)"
+	echo -e "$(tbold)Remove AGN-UDP$(treset)"
 	echo -e "\t$0 --remove"
 	echo
 	echo -e "$(tbold)Check for the update$(treset)"
@@ -651,16 +648,15 @@ parse_arguments() {
 
 # /etc/systemd/system/hysteria-server.service
 tpl_hysteria_server_service_base() {
-	local _config_name="/etc/hysteria/config"
 	
 	cat << EOF
 	[Unit]
-	Description=Hysteria Server Service (${_config_name}.json)
+	Description=Hysteria Server Service Config.json
 	After=network.target
 	
 	[Service]
 	Type=simple
-	ExecStart=$EXECUTABLE_INSTALL_PATH -config ${_config_name}.json server
+	ExecStart=$EXECUTABLE_INSTALL_PATH -config /etc/hysteria/config.json server
 	WorkingDirectory=$CONFIG_DIR
 	User=$HYSTERIA_USER
 	Group=$HYSTERIA_USER
@@ -942,14 +938,16 @@ perform_install() {
 						
 						if [[ -n "$_is_frash_install" ]]; then
 							echo
-							echo -e "$(tbold)Congratulation! Hysteria has been successfully installed on your server.$(treset)"
+							echo -e "$(tbold)Congratulation! AGN-UDP has been successfully installed on your server.$(treset)"
 							echo
 							echo -e "What's next?"
 							echo
-							echo -e "\t+ Check out the latest quick start guide at $(tblue)https://hysteria.network/docs/quick-start/$(treset)"
+							echo -e "\t+ Check out my website at $(tblue)https://www.khaledagn.com$(treset)"
+							echo -e "\t+ Follow me on Telegram: $(tblue)https://t.me/khaledagn(treset)"
+							echo -e "\t+ Follow me on Facebook: $(tblue)https://facebook.com/itskhaledagn(treset)"
 							echo -e "\t+ Edit server config file at $(tred)$CONFIG_DIR/config.json$(treset)"
-							echo -e "\t+ Start your hysteria server with $(tred)systemctl start hysteria-server.service$(treset)"
-							echo -e "\t+ Configure hysteria start on system boot with $(tred)systemctl enable hysteria-server.service$(treset)"
+							echo -e "\t+ Start your AGN-UDP server with $(tred)systemctl start hysteria-server.service$(treset)"
+							echo -e "\t+ Configure AGN-UDP start on system boot with $(tred)systemctl enable hysteria-server.service$(treset)"
 							echo
 							else
 								restart_running_services
@@ -968,7 +966,7 @@ perform_remove() {
 	perform_remove_hysteria_systemd
 	
 	echo
-	echo -e "$(tbold)Congratulation! Hysteria has been successfully removed from your server.$(treset)"
+	echo -e "$(tbold)Congratulation! AGN-UDP has been successfully removed from your server.$(treset)"
 	echo
 	echo -e "You still need to remove configuration files and ACME certificates manually with the following commands:"
 	echo
@@ -1001,6 +999,13 @@ perform_check_update() {
 			fi
 }
 
+install_dependencies() {
+	echo "Installing dependencies...."
+	apt update
+	apt install -y curl 
+	apt install -y gnupg openssl 
+	apt install -y nano
+}
 
 setup_ssl() {
 	echo "Installing ssl"
@@ -1026,6 +1031,7 @@ main() {
 	
 	case "$OPERATION" in
 	"install")
+	install_dependencies
 	perform_install
 	setup_ssl
 	;;

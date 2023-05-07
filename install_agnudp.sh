@@ -240,7 +240,7 @@ detect_package_manager() {
 		fi
 		
 		if has_command apt; then
-			PACKAGE_MANAGEMENT_INSTALL='apt -y --no-install-recommends install'
+			PACKAGE_MANAGEMENT_INSTALL='apt -y install'
 			return 0
 			fi
 			
@@ -646,59 +646,59 @@ parse_arguments() {
 
 # /etc/systemd/system/hysteria-server.service
 tpl_hysteria_server_service_base() {
-  local _config_name="$1"
-
-  cat << EOF
-[Unit]
-Description=Hysteria Server Service config.json
-After=network.target
-
-[Service]
-Type=simple
-ExecStart=$EXECUTABLE_INSTALL_PATH -config /etc/hysteria/config.json server
-WorkingDirectory=$CONFIG_DIR
-User=$HYSTERIA_USER
-Group=$HYSTERIA_USER
-Environment=HYSTERIA_LOG_LEVEL=info
-CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_NET_RAW
-AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_NET_RAW
-NoNewPrivileges=true
-
-[Install]
-WantedBy=multi-user.target
-EOF
+	local _config_name="$1"
+	
+	cat << EOF
+	[Unit]
+	Description=Hysteria Server Service config.json
+	After=network.target
+	
+	[Service]
+	Type=simple
+	ExecStart=$EXECUTABLE_INSTALL_PATH -config /etc/hysteria/config.json server
+	WorkingDirectory=$CONFIG_DIR
+	User=$HYSTERIA_USER
+	Group=$HYSTERIA_USER
+	Environment=HYSTERIA_LOG_LEVEL=info
+	CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_NET_RAW
+	AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_NET_RAW
+	NoNewPrivileges=true
+	
+	[Install]
+	WantedBy=multi-user.target
+	EOF
 }
 
 # /etc/systemd/system/hysteria-server.service
 tpl_hysteria_server_service() {
-  tpl_hysteria_server_service_base 'config'
+	tpl_hysteria_server_service_base 'config'
 }
 
 # /etc/systemd/system/hysteria-server@.service
 tpl_hysteria_server_x_service() {
-  tpl_hysteria_server_service_base '%i'
+	tpl_hysteria_server_service_base '%i'
 }
 
 # /etc/hysteria/config.json
 tpl_etc_hysteria_config_json() {
-  cat << EOF
-{
-  "listen": "$UDP_PORT",
-  "protocol": "$PROTOCOL",
-  "cert": "/etc/hysteria/hysteria.server.crt",
-  "key": "/etc/hysteriah/ysteria.server.key",
-  "up": "100 Mbps",
-  "up_mbps": 100,
-  "down": "100 Mbps",
-  "down_mbps": 100,
-  "disable_udp": false,
-  "obfs": "$OBFS",
-  "auth": {
-	"mode": "passwords",
-	"config": ["$PASSWORD"]
-         }
-}
-EOF
+	cat << EOF
+	{
+		"listen": "$UDP_PORT",
+		"protocol": "$PROTOCOL",
+		"cert": "/etc/hysteria/hysteria.server.crt",
+		"key": "/etc/hysteriah/ysteria.server.key",
+		"up": "100 Mbps",
+		"up_mbps": 100,
+		"down": "100 Mbps",
+		"down_mbps": 100,
+		"disable_udp": false,
+		"obfs": "$OBFS",
+		"auth": {
+			"mode": "passwords",
+			"config": ["$PASSWORD"]
+		}
+	}
+	EOF
 }
 
 

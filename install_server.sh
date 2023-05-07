@@ -691,9 +691,7 @@ tpl_etc_hysteria_config_json() {
   "listen": $UDP_PORT,
   "protocol": $PROTOCOL,
   "acme": {
-	"domains": [
-	$DOMAIN
-	], // Domains for the ACME cert
+	"domain":$DOMAIN, // Domains for the ACME cert
 	"email": $EMAIL, // Registration email, optional but recommended
 	"disable_http": false, // Disable HTTP challenges
 	"disable_tlsalpn": false, // Disable TLS-ALPN challenges

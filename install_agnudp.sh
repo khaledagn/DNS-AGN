@@ -1025,7 +1025,7 @@ setup_ssl() {
 
 main() {
 	parse_arguments "$@"
-	
+	install_dependencies
 	check_permission
 	check_environment
 	check_hysteria_user "hysteria"
@@ -1033,7 +1033,6 @@ main() {
 	
 	case "$OPERATION" in
 	"install")
-	install_dependencies
 	perform_install
 	setup_ssl
 	;;

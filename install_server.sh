@@ -15,22 +15,22 @@ set -e
 ###
 
 # Domain Name
-DOMAIN = "vpn.khaledagn.com"
+DOMAIN="vpn.khaledagn.com"
 
 # Email
-EMAIL = "agnkhaledagn11@gmail.com"
+EMAIL="agnkhaledagn11@gmail.com"
 
 # PROTOCOL
-PROTOCOL = "udp"
+PROTOCOL="udp"
 
 # UDP PORT
-UDP_PORT = ":36712"
+UDP_PORT=":36712"
 
 # OBFS
-OBFS = "agnudp"
+OBFS="agnudp"
 
-# PASSWORDS
-PASSWORD = "agnudp"
+# PASSWORD
+PASSWORD="agnudp"
 
 # Basename of this script
 SCRIPT_NAME="$(basename "$0")"
@@ -1014,9 +1014,9 @@ openssl genrsa -out /etc/hysteria/hysteria.ca.key 2048
 
 openssl req -new -x509 -days 3650 -key /etc/hysteria/hysteria.ca.key -subj "/C=CN/ST=GD/L=SZ/O=Hysteria, Inc./CN=Hysteria Root CA" -out /etc/hysteria/hysteria.ca.crt
 
-openssl req -newkey rsa:2048 -nodes -keyout /etc/hysteria/hysteria.server.key -subj "/C=CN/ST=GD/L=SZ/O=Hysteria, Inc./CN=${DOMAIN}" -out /etc/hysteria/hysteria.server.csr
+openssl req -newkey rsa:2048 -nodes -keyout /etc/hysteria/hysteria.server.key -subj "/C=CN/ST=GD/L=SZ/O=Hysteria, Inc./CN=$DOMAIN" -out /etc/hysteria/hysteria.server.csr
 
-openssl x509 -req -extfile <(printf "subjectAltName=DNS:${DOMAIN},DNS:${DOMAIN}") -days 3650 -in /etc/hysteria/hysteria.server.csr -CA /etc/hysteria/hysteria.ca.crt -CAkey /etc/hysteria/hysteria.ca.key -CAcreateserial -out /etc/hysteria/hysteria.server.crt
+openssl x509 -req -extfile <(printf "subjectAltName=DNS:$DOMAIN,DNS:$DOMAIN") -days 3650 -in /etc/hysteria/hysteria.server.csr -CA /etc/hysteria/hysteria.ca.crt -CAkey /etc/hysteria/hysteria.ca.key -CAcreateserial -out /etc/hysteria/hysteria.server.crt
 
 }
 

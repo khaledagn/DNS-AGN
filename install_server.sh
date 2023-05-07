@@ -14,6 +14,24 @@ set -e
 # SCRIPT CONFIGURATION
 ###
 
+# Domain Name
+DOMAIN = "vpn.khaledagn.com"
+
+# Email
+EMAIL = "agnkhaledagn11@gmail.com"
+
+# PROTOCOL
+PROTOCOL = "udp"
+
+# UDP PORT
+UDP_PORT = ":36712"
+
+# OBFS
+OBFS = "agnudp"
+
+# PASSWORDS
+PASSWORD = "agnudp"
+
 # Basename of this script
 SCRIPT_NAME="$(basename "$0")"
 
@@ -670,27 +688,29 @@ tpl_hysteria_server_x_service() {
 tpl_etc_hysteria_config_json() {
   cat << EOF
 {
-  "listen": ":36712",
-  "protocol": "udp",
+  "listen": $UDP_PORT,
+  "protocol": $PROTOCOL,
   "acme": {
 	"domains": [
-	"vpn.khaledagn.com"
+	$DOMAIN
 	], // Domains for the ACME cert
-	"email": "agnkhaled11@email.com", // Registration email, optional but recommended
+	"email": $EMAIL, // Registration email, optional but recommended
 	"disable_http": false, // Disable HTTP challenges
 	"disable_tlsalpn": false, // Disable TLS-ALPN challenges
 	"alt_http_port": 8089, // Alternate port for HTTP challenges
 	"alt_tlsalpn_port": 4433 // Alternate port for TLS-ALPN challenges
 },
+  "cert": ""/etc/hysteria.server.crt",
+  "key": ""/etc/hysteria.server.key" ,
   "up": "100 Mbps", // Max upload speed per client, mutually exclusive with "up_mbps" below
   "up_mbps": 100, // Max upload Mbps per client
   "down": "100 Mbps", // Max download speed per client, mutually exclusive with "down_mbps" below
   "down_mbps": 100, // Max download Mbps per client
   "disable_udp": false, // Disable UDP support
-  "obfs": "agnudp",
+  "obfs": $OBFS,
   "auth": {
-	"mode": "passwords",
-	"config": ["agnudp", "agnudps"]
+	"mode": "password",
+	"config": $PASSWORD
          }
 }
 EOF
@@ -990,6 +1010,19 @@ perform_check_update() {
     echo
   fi
 }
+setup_ssl() {
+echo "Installing ssl"
+openssl genrsa -out /etc/hysteria/hysteria.ca.key 2048
+
+openssl req -new -x509 -days 3650 -key /etc/hysteria/hysteria.ca.key -subj "/C=CN/ST=GD/L=SZ/O=Hysteria, Inc./CN=Hysteria Root CA" -out /etc/hysteria/hysteria.ca.crt
+
+openssl req -newkey rsa:2048 -nodes -keyout /etc/hysteria/hysteria.server.key -subj "/C=CN/ST=GD/L=SZ/O=Hysteria, Inc./CN=${DOMAIN}" -out /etc/hysteria/hysteria.server.csr
+
+openssl x509 -req -extfile <(printf "subjectAltName=DNS:${DOMAIN},DNS:${DOMAIN}") -days 3650 -in /etc/hysteria/hysteria.server.csr -CA /etc/hysteria/hysteria.ca.crt -CAkey /etc/hysteria/hysteria.ca.key -CAcreateserial -out /etc/hysteria/hysteria.server.crt
+
+}
+
+
 
 main() {
   parse_arguments "$@"
@@ -1002,6 +1035,7 @@ main() {
   case "$OPERATION" in
     "install")
       perform_install
+      setup_ssl
       ;;
     "remove")
       perform_remove

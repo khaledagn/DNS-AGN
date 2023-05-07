@@ -698,8 +698,8 @@ tpl_etc_hysteria_config_json() {
 	"alt_http_port": 8089, // Alternate port for HTTP challenges
 	"alt_tlsalpn_port": 4433 // Alternate port for TLS-ALPN challenges
 },
-  "cert": ""/etc/hysteria.server.crt",
-  "key": ""/etc/hysteria.server.key" ,
+  "cert": "/etc/hysteria.server.crt",
+  "key": "/etc/hysteria.server.key",
   "up": "100 Mbps", // Max upload speed per client, mutually exclusive with "up_mbps" below
   "up_mbps": 100, // Max upload Mbps per client
   "down": "100 Mbps", // Max download speed per client, mutually exclusive with "down_mbps" below

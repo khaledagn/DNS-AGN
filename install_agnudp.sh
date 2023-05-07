@@ -933,7 +933,7 @@ perform_install() {
 							echo -e "$(tbold)Congratulation! AGN-UDP has been successfully installed on your server.$(treset)"
 							echo
 							echo -e "$(tbold)Client app AGN INJECTOR:$(treset)"
-							echo -e "\t+$(tblue)https://play.google.com/store/apps/details?id=com.agn.injector$(treset)"
+							echo -e "$(tblue)https://play.google.com/store/apps/details?id=com.agn.injector$(treset)"
 							echo
 							echo -e "Follow me!"
 							echo

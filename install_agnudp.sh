@@ -1028,8 +1028,8 @@ main() {
 	
 	case "$OPERATION" in
 	"install")
-	setup_ssl
 	perform_install
+	setup_ssl
 	;;
 	"remove")
 	perform_remove

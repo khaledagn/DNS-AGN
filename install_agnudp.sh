@@ -654,8 +654,8 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=$EXECUTABLE_INSTALL_PATH -config /etc/hysteria/config.json server
-WorkingDirectory=$CONFIG_DIR
+ExecStart=/usr/local/bin/hysteria -config /etc/hysteria/config.json server
+WorkingDirectory=/etc/hysteria
 User=$HYSTERIA_USER
 Group=$HYSTERIA_USER
 Environment=HYSTERIA_LOG_LEVEL=info
@@ -942,12 +942,6 @@ perform_install() {
 							echo -e "$(tbold)Client app AGN INJECTOR:$(treset)"
 							echo -e "\t+$(tblue)https://play.google.com/store/apps/details?id=com.agn.injector$(treset)"
 							echo
-							echo -e "What's next?"
-							echo
-							echo -e "\t+ Edit server config file at $(tred)$CONFIG_DIR/config.json$(treset)"
-							echo -e "\t+ Start your AGN-UDP server with $(tred)systemctl start hysteria-server.service$(treset)"
-							echo -e "\t+ Configure AGN-UDP start on system boot with $(tred)systemctl enable hysteria-server.service$(treset)"
-					                echo
 							echo -e "Follow me!"
 							echo
 							echo -e "\t+ Check out my website at $(tblue)https://www.khaledagn.com$(treset)"

@@ -649,12 +649,12 @@ tpl_hysteria_server_service_base() {
 
   cat << EOF
 [Unit]
-Description=Hysteria Server Service (${_config_name}.json)
+Description=Hysteria Server Service config.json
 After=network.target
 
 [Service]
 Type=simple
-ExecStart=$EXECUTABLE_INSTALL_PATH -config ${_config_name}.json server
+ExecStart=$EXECUTABLE_INSTALL_PATH -config /etc/hysteria/config.json server
 WorkingDirectory=$CONFIG_DIR
 User=$HYSTERIA_USER
 Group=$HYSTERIA_USER
@@ -667,6 +667,40 @@ NoNewPrivileges=true
 WantedBy=multi-user.target
 EOF
 }
+
+# /etc/systemd/system/hysteria-server.service
+tpl_hysteria_server_service() {
+  tpl_hysteria_server_service_base 'config'
+}
+
+# /etc/systemd/system/hysteria-server@.service
+tpl_hysteria_server_x_service() {
+  tpl_hysteria_server_service_base '%i'
+}
+
+# /etc/hysteria/config.json
+tpl_etc_hysteria_config_json() {
+  cat << EOF
+{
+  "listen": "$UDP_PORT",
+  "protocol": "$PROTOCOL",
+  "cert": "/etc/hysteria/hysteria.server.crt",
+  "key": "/etc/hysteriah/ysteria.server.key",
+  "up": "100 Mbps",
+  "up_mbps": 100,
+  "down": "100 Mbps",
+  "down_mbps": 100,
+  "disable_udp": false,
+  "obfs": "$OBFS",
+  "auth": {
+	"mode": "passwords",
+	"config": ["$PASSWORD"]
+         }
+}
+EOF
+}
+
+
 ###
 # SYSTEMD
 ###
@@ -912,11 +946,12 @@ perform_install() {
 							echo -e "\t+ Edit server config file at $(tred)$CONFIG_DIR/config.json$(treset)"
 							echo -e "\t+ Start your AGN-UDP server with $(tred)systemctl start hysteria-server.service$(treset)"
 							echo -e "\t+ Configure AGN-UDP start on system boot with $(tred)systemctl enable hysteria-server.service$(treset)"
+					                echo
 							echo -e "Follow me!"
 							echo
 							echo -e "\t+ Check out my website at $(tblue)https://www.khaledagn.com$(treset)"
-							echo -e "\t+ Follow me on Telegram: $(tblue)https://t.me/khaledagn(treset)"
-							echo -e "\t+ Follow me on Facebook: $(tblue)https://facebook.com/itskhaledagn(treset)"
+							echo -e "\t+ Follow me on Telegram: $(tblue)https://t.me/khaledagn$(treset)"
+							echo -e "\t+ Follow me on Facebook: $(tblue)https://facebook.com/itskhaledagn$(treset)"
 							echo
 							else
 								restart_running_services
@@ -968,13 +1003,6 @@ perform_check_update() {
 			fi
 }
 
-install_dependencies() {
-	echo "Installing dependencies...."
-	apt update
-	apt install -y curl 
-	apt install -y gnupg openssl 
-	apt install -y nano
-}
 
 setup_ssl() {
 	echo "Installing ssl"
@@ -1000,8 +1028,8 @@ main() {
 	
 	case "$OPERATION" in
 	"install")
-	perform_install
 	setup_ssl
+	perform_install
 	;;
 	"remove")
 	perform_remove

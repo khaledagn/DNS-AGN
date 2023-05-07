@@ -239,7 +239,7 @@ detect_package_manager() {
 		fi
 		
 		if has_command apt; then
-			PACKAGE_MANAGEMENT_INSTALL='apt -y install'
+			PACKAGE_MANAGEMENT_INSTALL='apt update; apt -y install'
 			return 0
 			fi
 			

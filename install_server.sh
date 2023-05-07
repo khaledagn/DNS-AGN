@@ -688,11 +688,11 @@ tpl_hysteria_server_x_service() {
 tpl_etc_hysteria_config_json() {
   cat << EOF
 {
-  "listen": $UDP_PORT,
-  "protocol": $PROTOCOL,
+  "listen": "$UDP_PORT",
+  "protocol": "$PROTOCOL",
   "acme": {
-	"domain":$DOMAIN, // Domains for the ACME cert
-	"email": $EMAIL, // Registration email, optional but recommended
+	"domain":"$DOMAIN", // Domains for the ACME cert
+	"email": "$EMAIL", // Registration email, optional but recommended
 	"disable_http": false, // Disable HTTP challenges
 	"disable_tlsalpn": false, // Disable TLS-ALPN challenges
 	"alt_http_port": 8089, // Alternate port for HTTP challenges
@@ -705,10 +705,10 @@ tpl_etc_hysteria_config_json() {
   "down": "100 Mbps", // Max download speed per client, mutually exclusive with "down_mbps" below
   "down_mbps": 100, // Max download Mbps per client
   "disable_udp": false, // Disable UDP support
-  "obfs": $OBFS,
+  "obfs": "$OBFS",
   "auth": {
 	"mode": "password",
-	"config": $PASSWORD
+	"config": "$PASSWORD"
          }
 }
 EOF

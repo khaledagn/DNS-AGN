@@ -30,7 +30,7 @@ UDP_PORT=":36712"
 OBFS="agnudp"
 
 # PASSWORD
-PASSWORD="agnudp"
+PASSWORD="agnudp","agnudps"
 
 # Basename of this script
 SCRIPT_NAME="$(basename "$0")"
@@ -533,7 +533,7 @@ check_hysteria_user() {
 
 check_hysteria_homedir() {
   local _default_hysteria_homedir="$1"
-
+  
   if [[ -n "$HYSTERIA_HOME_DIR" ]]; then
     return
   fi
@@ -691,24 +691,24 @@ tpl_etc_hysteria_config_json() {
   "listen": "$UDP_PORT",
   "protocol": "$PROTOCOL",
   "acme": {
-	"domain":"$DOMAIN", // Domains for the ACME cert
-	"email": "$EMAIL", // Registration email, optional but recommended
-	"disable_http": false, // Disable HTTP challenges
-	"disable_tlsalpn": false, // Disable TLS-ALPN challenges
-	"alt_http_port": 8089, // Alternate port for HTTP challenges
-	"alt_tlsalpn_port": 4433 // Alternate port for TLS-ALPN challenges
+	"domain":"$DOMAIN",
+	"email": "$EMAIL",
+	"disable_http": false,
+	"disable_tlsalpn": false,
+	"alt_http_port": 8089,
+	"alt_tlsalpn_port": 4433
 },
   "cert": "/etc/hysteria.server.crt",
   "key": "/etc/hysteria.server.key",
-  "up": "100 Mbps", // Max upload speed per client, mutually exclusive with "up_mbps" below
-  "up_mbps": 100, // Max upload Mbps per client
-  "down": "100 Mbps", // Max download speed per client, mutually exclusive with "down_mbps" below
-  "down_mbps": 100, // Max download Mbps per client
-  "disable_udp": false, // Disable UDP support
+  "up": "100 Mbps",
+  "up_mbps": 100,
+  "down": "100 Mbps",
+  "down_mbps": 100,
+  "disable_udp": false,
   "obfs": "$OBFS",
   "auth": {
-	"mode": "password",
-	"config": "$PASSWORD"
+	"mode": "passwords",
+	"config": ["$PASSWORD"]
          }
 }
 EOF

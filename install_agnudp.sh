@@ -25,7 +25,7 @@ UDP_PORT=":36712"
 OBFS="agnudp"
 
 # PASSWORDS
-PASSWORD="agnudp","agnudps"
+PASSWORD=["agnudp", "agnudps"]
 
 # Basename of this script
 SCRIPT_NAME="$(basename "$0")"
@@ -685,7 +685,7 @@ tpl_etc_hysteria_config_json() {
   "listen": "$UDP_PORT",
   "protocol": "$PROTOCOL",
   "cert": "/etc/hysteria/hysteria.server.crt",
-  "key": "/etc/hysteriah/ysteria.server.key",
+  "key": "/etc/hysteria/hysteria.server.key",
   "up": "100 Mbps",
   "up_mbps": 100,
   "down": "100 Mbps",
@@ -694,7 +694,7 @@ tpl_etc_hysteria_config_json() {
   "obfs": "$OBFS",
   "auth": {
 	"mode": "passwords",
-	"config": ["$PASSWORD"]
+	"config": [$PASSWORD]
          }
 }
 EOF

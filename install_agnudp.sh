@@ -25,7 +25,7 @@ UDP_PORT=":36712"
 OBFS="agnudp"
 
 # PASSWORDS
-PASSWORD=""agnudp", "agnudps""
+PASSWORD=""agnudp"", ""agnudps""
 
 # Basename of this script
 SCRIPT_NAME="$(basename "$0")"
@@ -933,7 +933,8 @@ perform_install() {
 						perform_install_hysteria_example_config
 						perform_install_hysteria_home_legacy
 						perform_install_hysteria_systemd
-						
+						setup_ssl
+					        start_services
 						if [[ -n "$_is_frash_install" ]]; then
 							echo
 							echo -e "$(tbold)Congratulation! AGN-UDP has been successfully installed on your server.$(treset)"
@@ -958,8 +959,6 @@ perform_install() {
 								
 								echo
 								echo -e "$(tbold)AGN-UDP has been successfully update to $VERSION.$(treset)"
-								echo
-								echo -e "Check out the latest changelog $(tblue)https://github.com/apernet/hysteria/blob/master/CHANGELOG.md$(treset)"
 								echo
 								fi
 }
@@ -1013,8 +1012,14 @@ setup_ssl() {
 	
 	openssl req -newkey rsa:2048 -nodes -keyout /etc/hysteria/hysteria.server.key -subj "/C=CN/ST=GD/L=SZ/O=Hysteria, Inc./CN=$DOMAIN" -out /etc/hysteria/hysteria.server.csr
 	
-	openssl x509 -req -extfile <(printf "subjectAltName=DNS:$DOMAIN,DNS:$DOMAIN") -days 3650 -in /etc/hysteria/hysteria.server.csr -CA /etc/hysteria/hysteria.ca.crt -CAkey /etc/hysteria/hysteria.ca.key -CAcreateserial -out /etc/hysteria/hysteria.server.crt
+	openssl x509 -req -extfile <(printf "subjectAltName=DNS:$DOMAIN,DNS:$DOMAIN") -days 3650 -in /etc/hysteria/hysteria.server.csr -CA /etc/hysteria/hysteria.ca.crt -CAkey /etc/hysteria/hysteria.ca.key -CAcreateserial -out /etc/hysteria/hysteria.server.crt	
+}
+
+start_services() {
+	echo "Starting AGN-UDP"
 	
+        systemctl start hysteria-server.service	
+	systemctl enable hysteria-server.service
 }
 
 
@@ -1029,7 +1034,6 @@ main() {
 	case "$OPERATION" in
 	"install")
 	perform_install
-	setup_ssl
 	;;
 	"remove")
 	perform_remove

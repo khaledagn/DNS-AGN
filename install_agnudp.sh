@@ -928,7 +928,7 @@ perform_install() {
 						echo "$(tgreen)Installed version is up-to-dated, there is nothing to do.$(treset)"
 						return
 						fi
-						
+					
 						perform_install_hysteria_binary
 						perform_install_hysteria_example_config
 						perform_install_hysteria_home_legacy
@@ -996,6 +996,13 @@ perform_check_update() {
 			fi
 }
 
+install_dependencies() {
+echo 'Installing dependencies..'
+apt update
+apt install -y gnupg openssl 
+apt install -y curl
+apt install -y nano
+}
 
 setup_ssl() {
 	echo "Installing ssl"
@@ -1024,7 +1031,7 @@ main() {
 	check_environment
 	check_hysteria_user "hysteria"
 	check_hysteria_homedir "/var/lib/$HYSTERIA_USER"
-	
+	install_dependencies
 	case "$OPERATION" in
 	"install")
 	perform_install

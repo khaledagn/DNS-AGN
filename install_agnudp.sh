@@ -244,22 +244,22 @@ detect_package_manager() {
 			fi
 			
 			if has_command dnf; then
-				PACKAGE_MANAGEMENT_INSTALL='dnf -y install'
+				PACKAGE_MANAGEMENT_INSTALL='dnf check-update; dnf -y install'
 				return 0
 				fi
 				
 				if has_command yum; then
-					PACKAGE_MANAGEMENT_INSTALL='yum -y install'
+					PACKAGE_MANAGEMENT_INSTALL='yum update; yum -y install'
 					return 0
 					fi
 					
 					if has_command zypper; then
-						PACKAGE_MANAGEMENT_INSTALL='zypper install -y --no-recommends'
+						PACKAGE_MANAGEMENT_INSTALL='zypper update; zypper install -y --no-recommends'
 						return 0
 						fi
 						
 						if has_command pacman; then
-							PACKAGE_MANAGEMENT_INSTALL='pacman -Syu --noconfirm'
+							PACKAGE_MANAGEMENT_INSTALL='pacman -Syu; pacman -Syu --noconfirm'
 							return 0
 							fi
 							
@@ -924,7 +924,6 @@ perform_install() {
 						echo "$(tgreen)Installed version is up-to-dated, there is nothing to do.$(treset)"
 						return
 						fi
-					
 						perform_install_hysteria_binary
 						perform_install_hysteria_example_config
 						perform_install_hysteria_home_legacy
@@ -992,13 +991,6 @@ perform_check_update() {
 			fi
 }
 
-install_dependencies() {
-echo 'Installing dependencies..'
-apt update
-apt install -y gnupg openssl 
-apt install -y curl
-apt install -y nano
-}
 
 setup_ssl() {
 	echo "Installing ssl"
@@ -1014,16 +1006,14 @@ setup_ssl() {
 
 start_services() {
 	echo "Starting AGN-UDP"
-	
-        systemctl start hysteria-server.service	
 	systemctl enable hysteria-server.service
+	systemctl start hysteria-server.service	
 }
 
 
 
 main() {
 	parse_arguments "$@"
-	install_dependencies
 	check_permission
 	check_environment
 	check_hysteria_user "hysteria"

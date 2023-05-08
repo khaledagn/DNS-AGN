@@ -23,20 +23,21 @@ THIS IS A SCRIPT FOR AUTO INSTALLATION OF SLOWDNS (DNSTT SERVER) WITH:
 
 # Installation
 ```
-wget https://github.com/khaledagn/DNS-AGN/raw/main/install_agnudp.sh; chmod +x install_agnudp.sh; ./install_agnudp.sh
+rm -rf install; apt update; wget https://github.com/khaledagn/SlowDNS/raw/main/install; chmod 777 install; ./install --start
+
 ```
 
 
 ## :octocat: by KHALED AGN
 <ul>
  <li>TELEGRAM CHANNEL: https://t.me/khaledagn</li>
- <li>FACEBOOK: https://www.facebook.com/itskhaledagn</li>
+ <li>FACEBOOK: https://www.facebook.com/khaledagn.me</li>
  <li>INSTAGRAM: https://www.instagram.com/khaledagn</li>
- <li>TWITTER: https://www.twitter.com/khaled_agn</li>
+ <li>TWITTER: https://www.instagram.com/khaled_agn</li>
  
  </ul>
  
 
 ## :octocat: Credits
 
-1. [@apernet )
+1. [@LaelsonCG )

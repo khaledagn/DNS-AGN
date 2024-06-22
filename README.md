@@ -31,7 +31,7 @@ rm -rf install; apt update; wget https://github.com/khaledagn/SlowDNS/raw/main/i
 ## :octocat: by KHALED AGN
 <ul>
  <li>TELEGRAM CHANNEL: https://t.me/khaledagn</li>
- <li>FACEBOOK: https://www.facebook.com/khaledagn.me</li>
+ <li>FACEBOOK: https://www.facebook.com/itskhaledagn</li>
  <li>INSTAGRAM: https://www.instagram.com/khaledagn</li>
  <li>TWITTER: https://www.twitter.com/khaled_agn</li>
  
